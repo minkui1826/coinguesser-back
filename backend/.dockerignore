@@ -1,4 +1,11 @@
 node_modules
 npm-debug.log
-project/node_modules
-project/.env
+package-lock.json
+
+
+# git 관련
+.gitignore
+
+# 환경변수
+.env
+
