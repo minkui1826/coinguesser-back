@@ -5,13 +5,13 @@ FROM node:18
 WORKDIR /usr/src/app
 
 # 프로젝트 파일 복사
-COPY project/package*.json ./
+COPY package.json .
 
 # 종속성 설치
 RUN npm install
 
 # 전체 프로젝트 파일 복사
-COPY project/ .
+COPY src/ .
 
 # 애플리케이션을 노출할 포트 설정
 EXPOSE 3000
