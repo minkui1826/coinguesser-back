@@ -35,15 +35,8 @@ class PredictRequest(BaseModel):
     Time_of_Day: float
     Recent_Volatility: float
 
-<<<<<<< HEAD
-# Prediction endpoint
 @app.post("/predict")
 def predict(request: PredictRequest):
-    # Convert input data to array
-=======
-@app.post("/predict")
-def predict(request: PredictRequest):
->>>>>>> 61ab79e65224175452ab7606ee38cceeff6a02fe
     input_data = np.array([[request.open, request.high, request.low, request.volume,
                             request.value, request.Moving_Avg_5, request.Moving_Avg_10,
                             request.Moving_Avg_20, request.RSI_14, request.MACD,
@@ -52,20 +45,10 @@ def predict(request: PredictRequest):
                             request.Cumulative_Volume, request.Time_of_Day,
                             request.Recent_Volatility]])
 
-<<<<<<< HEAD
-    # Scale input data
-    input_scaled = scaler.transform(input_data)
-
-    # Predict the close value
-    prediction = model.predict(input_scaled)
-
-    # Return the prediction
-=======
     # 스케일링 진행
     input_scaled = scaler.transform(input_data)
 
     # 스케일링 된 데이터로 예측
     prediction = model.predict(input_scaled)
 
->>>>>>> 61ab79e65224175452ab7606ee38cceeff6a02fe
     return {"predicted_close": prediction[0]}
