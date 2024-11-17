@@ -1,16 +1,16 @@
 ## **도커 명령어**
 
 - **이미지 빌드**
-docker build -t fastapi-ml-app .
+`docker build -t fastapi-ml-app .`
 
 - **컨테이너 실행**
-docker run -d -p 8000:8000 fastapi-ml-app
+`docker run -d -p 8000:8000 fastapi-ml-app`
 
 ## **API 명세서**
 
-- **HTTP 메서드** : POST
+- **HTTP 메서드** : `POST`
 
-- **URL** : /predict
+- **URL** : `/predict`
 
 - **요청 형식** : json
 
