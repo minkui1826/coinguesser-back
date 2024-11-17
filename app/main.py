@@ -4,17 +4,13 @@ import joblib
 import numpy as np
 import os
 
-# Get the absolute path of the app directory
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-# Load the model and scaler
 model = joblib.load(os.path.join(BASE_DIR, "model.pkl"))
 scaler = joblib.load(os.path.join(BASE_DIR, "scaler.pkl"))
 
-# Initialize FastAPI
 app = FastAPI()
 
-# Input schema
 class PredictRequest(BaseModel):
     open: float
     high: float
@@ -35,10 +31,8 @@ class PredictRequest(BaseModel):
     Time_of_Day: float
     Recent_Volatility: float
 
-# Prediction endpoint
 @app.post("/predict")
 def predict(request: PredictRequest):
-    # Convert input data to array
     input_data = np.array([[request.open, request.high, request.low, request.volume,
                             request.value, request.Moving_Avg_5, request.Moving_Avg_10,
                             request.Moving_Avg_20, request.RSI_14, request.MACD,
@@ -47,11 +41,10 @@ def predict(request: PredictRequest):
                             request.Cumulative_Volume, request.Time_of_Day,
                             request.Recent_Volatility]])
 
-    # Scale input data
+    # 스케일링 진행
     input_scaled = scaler.transform(input_data)
 
-    # Predict the close value
+    # 스케일링 된 데이터로 예측
     prediction = model.predict(input_scaled)
 
-    # Return the prediction
     return {"predicted_close": prediction[0]}
